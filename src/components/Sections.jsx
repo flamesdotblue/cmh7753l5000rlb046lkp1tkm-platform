@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Shield, Users, Wallet, Gauge, Rocket, Sparkles, Clock, CheckCircle2 } from 'lucide-react'
+import { Shield, Users, Wallet, Gauge, Rocket, Sparkles, Clock, CheckCircle2, HeartHandshake } from 'lucide-react'
 
 function FeatureBento() {
   const now = new Date()
@@ -9,10 +9,11 @@ function FeatureBento() {
 
   const Card = ({ children, className = '' }) => (
     <motion.div
-      whileHover={{ y: -4 }} whileTap={{ scale: 0.98 }}
+      whileHover={{ y: -6, rotateX: 1.5, rotateY: -1.5 }} whileTap={{ scale: 0.985 }}
       className={`relative rounded-2xl p-5 border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden ${className}`}
     >
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-red-600/10 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-red-600/10 to-transparent" />
+      <div className="pointer-events-none absolute -inset-[1px] rounded-2xl [mask:linear-gradient(#000,#000)_content-box,linear-gradient(#000,#000)] [mask-composite:exclude] p-[1px] bg-gradient-to-r from-white/10 to-white/0" />
       {children}
     </motion.div>
   )
@@ -66,7 +67,7 @@ function FeatureBento() {
         </Card>
         <Card>
           <div className="flex items-start gap-3">
-            <div className="p-2 rounded-lg bg-red-600/20 border border-white/10"><Users className="text-red-400"/></div>
+            <div className="p-2 rounded-lg bg-red-600/20 border border-white/10"><HeartHandshake className="text-red-400"/></div>
             <div>
               <h3 className="font-bold">Community-Driven</h3>
               <p className="text-sm text-white/70">Meet classmates, build trust, and help new students explore.</p>
@@ -79,8 +80,8 @@ function FeatureBento() {
             <div className="w-full">
               <h3 className="font-bold">Launching Soon</h3>
               <p className="text-sm text-white/70">Target: Feb–Mar 2026</p>
-              <div className="mt-3 h-2 w-full bg-white/10 rounded">
-                <motion.div className="h-2 rounded bg-red-600" initial={{ width: 0 }} animate={{ width: `${progress.toFixed(0)}%` }} transition={{ duration: 1.2 }} />
+              <div className="mt-3 h-2 w-full bg-white/10 rounded overflow-hidden">
+                <motion.div className="h-2 bg-gradient-to-r from-red-500 via-red-400 to-red-600" initial={{ width: 0 }} animate={{ width: `${progress.toFixed(0)}%` }} transition={{ duration: 1.2 }} />
               </div>
               <div className="text-right text-xs text-white/60 mt-1">{progress.toFixed(0)}%</div>
             </div>
@@ -106,14 +107,14 @@ function HowItWorks() {
       </div>
       <div className="grid md:grid-cols-4 gap-4">
         {steps.map((s, i) => (
-          <motion.div key={i} initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true, amount: 0.4 }} transition={{ delay: i * 0.1 }}
+          <motion.div key={i} initial={{ y: 24, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true, amount: 0.45 }} transition={{ delay: i * 0.08, type: 'spring', stiffness: 160, damping: 18 }}
             className="relative rounded-2xl p-5 border border-white/10 bg-white/5 backdrop-blur-xl text-center"
           >
-            <div className="mx-auto size-14 grid place-items-center rounded-xl bg-red-600/20 border border-white/10 mb-3">{s.icon}</div>
+            <div className="mx-auto size-16 grid place-items-center rounded-2xl bg-red-600/20 border border-white/10 mb-3 shadow-[0_0_30px_rgba(239,68,68,0.25)]">{s.icon}</div>
             <h3 className="font-bold">{s.title}</h3>
             <p className="text-sm text-white/70">{s.desc}</p>
             {i < steps.length - 1 && (
-              <div className="hidden md:block absolute top-1/2 -right-2 w-4 h-0.5 bg-gradient-to-r from-red-600/60 to-transparent" />
+              <div className="hidden md:block absolute top-1/2 -right-2 w-6 h-[2px] bg-gradient-to-r from-red-600/70 to-transparent" />
             )}
           </motion.div>
         ))}
@@ -124,7 +125,8 @@ function HowItWorks() {
 
 function Safety() {
   const Card = ({ children }) => (
-    <motion.div whileHover={{ rotateX: 2, rotateY: -2, y: -4 }} className="rounded-2xl p-6 border border-white/10 bg-white/5 backdrop-blur-xl">
+    <motion.div whileHover={{ rotateX: 2, rotateY: -2, y: -6 }} className="rounded-2xl p-6 border border-white/10 bg-white/5 backdrop-blur-xl relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-red-600/10 to-transparent" />
       {children}
     </motion.div>
   )
@@ -177,7 +179,7 @@ function FinalCTA() {
       </motion.h3>
       <p className="text-white/70 mt-3">We’re gearing up for launch. Be the first to know when ORIX hits your campus.</p>
       <div className="mt-6 flex items-center justify-center gap-3">
-        <a href="https://forms.gle/example" target="_blank" rel="noreferrer" className="relative px-6 py-3 rounded-xl bg-red-600 hover:bg-red-500 active:scale-95 transition" data-cursor>
+        <a href="https://forms.gle/example" target="_blank" rel="noreferrer" className="relative px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-red-500 hover:brightness-110 active:scale-95 transition shadow-[0_0_24px_rgba(239,68,68,0.35)]" data-cursor>
           <span className="relative z-10">Join Waitlist</span>
           <span className="pointer-events-none absolute inset-0 rounded-xl bg-white/20 opacity-0 hover:opacity-10 transition" />
         </a>
